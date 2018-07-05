@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import {Route ,Redirect} from 'react-router';
+
+
 
 
 export default class App extends Component{
@@ -10,8 +13,11 @@ export default class App extends Component{
       aux: "",
       link: "",
 
-
     };
+  }
+
+  handleButtonClick(){
+    window.location=this.state.link
   }
 
   componentDidMount(){
@@ -69,6 +75,8 @@ export default class App extends Component{
     console.log(response.data);
     this.setState({ aux: response.data.auxId });
     this.setState({ link: response.data.startLink });
+    console.log("Start Link:" + response.data.startLink);
+
   })
 });
 }
@@ -77,8 +85,8 @@ export default class App extends Component{
     return(
 
         <div>
-        hi
-
+        <button onClick={this.handleButtonClick.bind(this)}
+        type="button" className = "btn btn-primary" > Remote Desktop</button>
         </div>
     )
   }
